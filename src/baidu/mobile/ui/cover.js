@@ -2,7 +2,7 @@
  * Tangram Mobile
  * Copyright 2010 Baidu Inc. All rights reserved.
  * 
- * path: baidu/mobile/ui/wrapper.js
+ * path: baidu/mobile/ui/cover.js
  * author: bang
  * version: 1.0.0
  * date: 2011/1/10
@@ -12,10 +12,10 @@
 ///import baidu.object.extend;
  
 ///import baidu.mobile.ui;
-///import baidu.mobile.setStyles;
+///import baidu.mobile.dom.setStyles;
 ///import baidu.mobile.event._customEvent.turn;
 
-baidu.m.ui.wrapper = function(options) {
+baidu.m.ui.cover = function(options) {
     var me = this,
         doc = document,
         p = baidu.page;
@@ -45,7 +45,7 @@ baidu.m.ui.wrapper = function(options) {
     baidu.m.on(window, "turn", function(e){me.update()});
 };
 
-baidu.m.ui.wrapper.prototype = {
+baidu.m.ui.cover.prototype = {
     
     show : function (options) {
         var me = this;
