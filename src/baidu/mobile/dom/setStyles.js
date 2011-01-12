@@ -9,6 +9,7 @@
  */
  
 
+///import baidu.mobile.dom.setStyle;
 ///import baidu.dom.setStyles;
 
 /**
