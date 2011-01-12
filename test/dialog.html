@@ -1,0 +1,101 @@
+<html><head> 
+    <meta http-equiv="ctn-Type" ctn="text/html; charset=utf-8"> 
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no;">
+    <title>无线代码</title> 
+ 
+	<style>
+		body{
+			margin:0;
+			padding:0;
+			background:#eee;
+			height:1760px;
+			width:100%;
+		}
+		#test{
+			width:50px;
+			background:#999;
+			height:100px;
+			
+		}
+		p{
+			margin:0;
+			padding:5px;
+		}
+		
+		.tangram_floater{
+			padding:5px;
+			background:#eee;
+			-webkit-border-radius:10px;
+			border:1px #999 solid;
+		}
+		
+		.tangram_dialog{
+			background:#eee;
+			-webkit-border-radius:10px;
+			-webkit-box-shadow: rgba(0, 0, 0, 0.597656) 0px 0px 12px;
+		}
+		.tangram_dialog_head{
+
+			-webkit-border-top-left-radius:10px;
+			-webkit-border-top-right-radius:10px;
+			background: #FADB4E -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCEDA7), to(#FADB4E));
+			background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCEDA7), to(#FADB4E));
+			border: 1px solid #F7C942;
+			color: #333;
+			text-shadow: white 0px 1px 0px;
+			padding:5px;
+
+		}
+		.tangram_dialog_close{
+			float:right;
+			background-color: rgba(0, 0, 0, 0.398438);
+			background-image: url(http://code.jquery.com/mobile/1.0a2/images/icons-18-white.png);
+			background-repeat: no-repeat;
+			-webkit-border-radius: 9px 9px;
+			height: 18px;
+			width: 18px;
+			background-position: -72px 0px;
+		}
+		
+		.tangram_dialog_content{
+			padding:10px;
+		}
+		.button{
+			background: #2567AB -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5F9CC5), to(#396B9E));
+			background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5F9CC5), to(#396B9E));
+			border: 1px solid #145072;
+			color: white;
+			font-weight: bold;
+			text-decoration: none;
+			text-shadow: #145072 0px -1px 1px;
+			padding:5px;
+			-webkit-border-radius:10px;
+			text-align: center;
+			cursor: pointer;
+			font-family: Helvetica, Arial, sans-serif;
+			width:80px;
+			margin:7px;
+			display:inline-block;
+		}
+		.content{
+			margin:20px;
+			text-align:center;
+		}
+	</style>
+<body>
+	<div id="test">
+    </div>
+    <select><option>ssxx</option></select>
+	<div id="log"></div>	
+	<script type="text/javascript" src="../src/import.php?path=./&f=baidu.mobile.ui.dialog"></script>
+    <script>
+		var f = new baidu.m.ui.dialog({
+			title : "alert",
+			content : '<div class="content">this is dialog demo!</div><div class="button">OK</div><div class="button">cancel</div>',
+			width: 250,
+			height: 170
+		});
+		f.show();
+    </script>  
+</body>
+</html>

@@ -14,7 +14,8 @@
 ///import baidu.object.extend;
  
 ///import baidu.mobile.ui;
-///import baidu.mobile.setStyles;
+///import baidu.mobile.ui.cover;
+///import baidu.mobile.dom.setStyles;
 ///import baidu.mobile.event._customEvent.turn;
 ///import baidu.mobile.event._customEvent.tap;
 
@@ -51,12 +52,12 @@ baidu.mobile.ui.floater = function(options) {
         position : "absolute"
     });
     
-    me.wrapper = new baidu.m.ui.wrapper(
+    me.cover = new baidu.m.ui.cover(
         baidu.extend({
             zIndex : (me.zIndex - 1)
-        }, options.wrapperOptions || {})
+        }, options.coverOptions || {})
     );
-    me.wrapper.on("tap", function(e) {
+    me.cover.on("tap", function(e) {
         me.hide();
     });
     
@@ -85,18 +86,18 @@ baidu.mobile.ui.floater.prototype = {
             left : me.left || (window.innerWidth - me.width) / 2,
             top : me.top || (window.innerHeight - me.height) / 2
         })
-        me.wrapper.show();
+        me.cover.show();
     },
     
     hide : function() {
         var me = this;
         baidu.m.setStyle(me.dom, "display", "none");
-        me.wrapper.hide();
+        me.cover.hide();
     },
     
     dispose : function() {
         var me = this;
-        me.wrapper = null;
+        me.cover = null;
         me.dom.parentNode.removeChild(me.dom);
     },
     

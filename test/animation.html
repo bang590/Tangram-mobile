@@ -1,0 +1,186 @@
+<html><head> 
+    <meta http-equiv="ctn-Type" ctn="text/html; charset=utf-8"> 
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no;">
+    <title>无线代码</title> 
+	<style>
+		body{
+			margin:0;
+			background:#999;
+		}
+		#animation_from, #animation_to{
+			width:100%;
+			position:absolute;
+			min-height:420px;
+		}
+		#animation_to{
+			-webkit-transform : translateX(100%);
+			background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#9AA7B2), to(#3E4851));
+		}
+		.animation_ul{
+			margin:0;padding:0;
+		}
+		.animation_ul li{
+			margin:0;padding:0.5em 0.8em;width:auto;list-style:none;
+			min-height:1.5em;
+			font-size:18px;
+			background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#f5f5f5), to(#eee));
+			border-bottom:1px solid #D1D1D1;
+			color:#000;
+			cursor:pointer;
+		}
+		#animation_back{
+			padding:30px 50px;
+			width:50px;
+			margin:10px auto;
+			color:#fff;
+			font-size:28px;
+			cursor:pointer;
+		}
+		.animation_ctn{
+			font-size:26px;
+			color:#ccc;
+			width:210px;
+			margin:20px auto;
+		}
+		#animation_page{
+			width:100%;
+			overflow-x:hidden;
+			height:420px;
+			position:relative;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="animation_page">
+		<div id="animation_from">
+			<ul class="animation_ul">
+				<li id="animation_slide">slide</li>
+				<li id="animation_slideup">slide up</li>
+				<li id="animation_fade">fade</li>
+				<li id="animation_flip">flip</li>
+				<li id="animation_flipup">flipup</li>
+				<li id="animation_pop">pop</li>
+				<li id="animation_toss">toss</li>
+				<li id="animation_cube">cube</li>
+				<li id="animation_cubeup">cubeup</li>
+			</ul>
+			
+		</div>
+		<div id="animation_to">
+			<div id="animation_back">back</div>
+			<div class="animation_ctn">mobile animation effect demo page</div>
+		</div>
+	</div>
+<script type="text/javascript" src="../src/import.php?path=./&f=baidu.mobile.fx.*,baidu.mobile.event.on,baidu.mobile.event._customEvent.tap,baidu.mobile.dom.setStyle"></script>
+<script>
+	function animateEffect(type, direction) {
+		direction = direction || "left";
+		baidu.m.fx[type]("animation_from", {
+			out : true,
+			duration : 400,
+			direction : direction
+		});
+		baidu.m.fx[type]("animation_to", {
+			duration : 400,
+			direction : direction
+		});
+	}
+
+	baidu.m.event.on("animation_slide", "tap", function(e) {
+		animateEffect("slide");
+	});
+
+	baidu.m.event.on("animation_slideup", "tap", function(e) {
+		animateEffect("slide", "up");
+	});
+
+	baidu.m.event.on("animation_pop", "tap", function(e) {
+		animateEffect("pop");
+	});
+
+	baidu.m.event.on("animation_fade", "tap", function(e) {
+		baidu.dom.setStyle("animation_to", "webkitTransitionDuration", "0");
+		baidu.dom.setStyle("animation_to", "webkitTransform", "translateX(0)");
+		animateEffect("fade");
+	});
+
+	baidu.m.event.on("animation_flip", "tap", function(e) {
+		animateEffect("flip");
+	});
+
+	baidu.m.event.on("animation_flipup", "tap", function(e) {
+		animateEffect("flip", "up");
+	});
+
+	baidu.m.event.on("animation_cube", "tap", function(e) {
+		animateEffect("cube");
+	});
+
+	baidu.m.event.on("animation_cubeup", "tap", function(e) {
+		animateEffect("cube", "up");
+	});
+
+	baidu.m.event.on("animation_toss", "tap", function(e) {
+		baidu.m.fx.start("animation_from", {
+			to : {
+				opacity : 0
+			},
+			duration : 400
+		});
+		baidu.m.fx.start("animation_to", {
+			from : {
+				webkitTransform : "scale(2) rotate(10deg)",
+				opacity : "0"
+			},
+			to : {
+				webkitTransform : "scale(1) rotate(0)",
+				opacity : "1"
+			},
+			duration : 400
+		});
+	});
+
+
+
+	baidu.m.event.on("animation_back", "tap", function(e) {
+		baidu.m.setStyle("animation_from", "webkitTransform", "none");
+		baidu.m.setStyle("animation_from", "opacity", "1");
+		baidu.m.setStyle("animation_from", "webkitTransformOrigin", "50% 50%");
+		baidu.m.setStyle("animation_to", "webkitTransformOrigin", "50% 50%");
+		baidu.m.setStyle("animation_to", "webkitTransform", "none");
+		
+		baidu.m.fx.slide("animation_from", {
+			duration : 300,
+			direction: "right"
+		});
+		baidu.m.fx.slide("animation_to", {
+			out : true,
+			duration : 300,
+			direction: "right"
+		});
+	});
+
+
+
+
+	function animationUpdate(){
+		var ctnHeight = document.body.clientHeight;
+		
+		baidu.m.setStyle("animation_from", "height", ctnHeight);
+		baidu.m.setStyle("animation_to", "height", ctnHeight);
+		baidu.m.setStyle("animation_page", "height", ctnHeight);
+	}
+	animationUpdate();
+
+	addEventListener("resize", function(){
+		animationUpdate();
+	}, false);
+	addEventListener("orientationchange", function(){
+		animationUpdate();
+	}, false);
+
+
+</script>
+
+</body></html>

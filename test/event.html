@@ -1,0 +1,70 @@
+<html><head> 
+    <meta http-equiv="ctn-Type" ctn="text/html; charset=utf-8"> 
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no;">
+    <title>无线代码</title> 
+	<style>
+		#event_main{
+			min-height:460px;
+			background:#eee;
+			margin:10px;
+		}
+		#event_readme{
+			padding:20px;
+			font-size:14px;
+			line-height:19px;
+		}
+		#event_msg_panel{
+			margin-left:20px;
+			line-height:17px;
+		}
+		
+	</style>
+	</head>
+
+
+<div id="event_page">
+	<div id="event_main">
+		<div id="event_readme">事件包括：tap(单击) double tap(双击) taphold(长按) swipe(向左向右滑动) pinch(双指拖动缩放) turn(屏幕翻转)</div>
+		<div id="event_msg_panel"></div>
+	</div>
+</div>
+
+<script type="text/javascript" src="../src/import.php?path=./&f=baidu.mobile.event._customEvent.*,baidu.dom.g"></script>
+<script>
+	var eventMsg = [],
+		eventMsgPanel = baidu.g("event_msg_panel");
+
+	function eventLog(msg) {
+		eventMsg.unshift(msg);
+		if (eventMsg.length > 10) {
+			eventMsg.pop();
+		}	
+		eventMsgPanel.innerHTML = eventMsg.join("<br/>");
+	}
+	baidu.m.event.on("event_main", "tap", function(){
+		this.style.webkitTransform = 'none';
+		eventLog("tap");
+	});
+	baidu.m.event.on("event_main", "dbtap", function(){
+		eventLog("dbtap");
+	});
+	baidu.m.event.on("event_main", "taphold", function(){
+		eventLog("taphold");
+	});
+	baidu.m.event.on("event_main", "swipe", function(e){
+		eventLog("swipe " + e.direction);
+	});
+	baidu.m.event.on("event_main", "pinch", function(e) {
+		this.style.webkitTransform = 'scale3d(' + e.scale + ', ' + e.scale + ', 1) ' + 'rotate3d(0,0,0,'+ e.rotation + 'deg)';
+	});
+	baidu.m.event.on(window, "turn", function(e) {
+		if (e.turned) {
+			eventLog("turn horizontal");
+		} else {
+			eventLog("turn vertical");
+		};
+	});
+
+</script>
+
+</body></html>

@@ -1,0 +1,54 @@
+<html><head> 
+    <meta http-equiv="ctn-Type" ctn="text/html; charset=utf-8"> 
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no;">
+    <title>无线代码</title> 
+ 
+	<style>
+		body{
+			margin:0;
+			padding:0;
+			background:#eee;
+			height:1760px;
+		}
+		#test{
+			width:50px;
+			background:#999;
+			height:100px;
+		}
+		#test2{
+			width:60px;
+			background:#999;
+			height:100px;
+			position:absolute;
+			right:10px;
+		}
+		p{
+			margin:0;
+			padding:5px;
+		}
+	</style>
+<body>
+	<div id="test">
+	</div>
+	<div id="log"></div>
+	
+	<script type="text/javascript" src="../src/import.php?path=./&f=baidu.mobile.dom.fixed,baidu.mobile.event._customEvent.tap"></script>
+	<script type="text/javascript">
+		var msgArr = [];		
+		function log(msg) {
+			msgArr.unshift(msg);
+			if (msgArr.length > 20) {
+				msgArr.pop();
+			}
+			baidu.g("log").innerHTML = msgArr.join("<br/>");
+		}
+		baidu.mobile.dom.fixed("test", {right:20, top:25, fixedCompat:true});
+
+		baidu.m.event.on("test", "tap", function(e){
+			log(window.innerWidth);
+			log(window.innerHeight);
+		});
+	</script>
+	
+</body>
+</html>
